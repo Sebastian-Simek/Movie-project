@@ -1,5 +1,6 @@
 .App {
-  text-align: center;
+  display: flex;
+  flex-direction: row;
 }
 
 form {
@@ -7,4 +8,61 @@ form {
   justify-content: center;
   align-items: center;
   padding: 10px;
+}
+.auth-page {
+  display: flex;
+  flex-direction: row;
+}
+.sign-up {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.25rem;
+  font-family: monospace;
+  border: dotted 4px;
+  padding: 20px;
+  margin: 10px;
+}
+.sign-in {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.25rem;
+  font-family: monospace;
+  border: dotted 4px;
+  padding: 20px;
+  margin: 10px;
+}
+.links {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  padding: 20px;
+  font-size: 1.25rem;
+  font-family: monospace;
+}
+a:link {
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+  padding: 10px;
+}
+a:visited {
+  text-decoration: none;
+  color: black;
+}
+label {
+  display: flex;
+  flex-direction: column;
+}
+input {
+  border-radius: 5px;
+  font-size: 1rem;
+  margin: 10px;
+}
+button {
+  margin: 10px;
+  background-color: rgb(15, 15, 41);
+  color: white;
+  font-size: 1.25rem;
+  border-radius: 5px;
+  font-family:monospace;
 }

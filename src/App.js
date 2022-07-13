@@ -3,23 +3,26 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import AuthPage from './AuthPage';
 import MovieSearch from './MovieSearch';
 import WatchList from './WatchList';
+import './App.css';
 
 export default function App() {
   return (
     <Router>
-      <div>
+      <div className="App">
         <nav>
-          <ul>
-            <li>
-              <Link to="/AuthPage">Login</Link>
-            </li>
-            <li>
-              <Link to="/MovieSearch">Movies</Link>
-            </li>
-            <li>
-              <Link to="/WatchList">Watch List</Link>
-            </li>
-          </ul>
+          <div className="links">
+            <ul>
+              <li>
+                <Link to="/AuthPage">Login</Link>
+              </li>
+              <li>
+                <Link to="/MovieSearch">Movies</Link>
+              </li>
+              <li>
+                <Link to="/WatchList">Watch List</Link>
+              </li>
+            </ul>
+          </div>
         </nav>
 
         {/* A <Switch> looks through its children <Route>s and

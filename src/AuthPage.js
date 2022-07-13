@@ -21,44 +21,48 @@ export default function AuthPage({ setUser }) {
   return (
     <div className="auth-page">
       <form onSubmit={handleSignUp}>
-        <h3>SignUp</h3>
-        <label>
+        <div className="sign-up">
+          <h3>SignUp</h3>
+          <label>
           Email
-          <input
-            onChange={(e) => setSignUpEmail(e.target.value)}
-            value={signUpEmail}
-            type="email"
-          />
-        </label>
-        <label>
+            <input
+              onChange={(e) => setSignUpEmail(e.target.value)}
+              value={signUpEmail}
+              type="email"
+            />
+          </label>
+          <label>
           Password
-          <input
-            onChange={(e) => setSignUpPassword(e.target.value)}
-            value={signUpPassword}
-            type="password"
-          />
-        </label>
-        <button>SignUp</button>
+            <input
+              onChange={(e) => setSignUpPassword(e.target.value)}
+              value={signUpPassword}
+              type="password"
+            />
+          </label>
+          <button>SignUp</button>
+        </div>
       </form>
       <form onSubmit={handleSignIn}>
-        <h3>SignIn</h3>
-        <label>
+        <div className="sign-in">
+          <h3>SignIn</h3>
+          <label>
           Email
-          <input
-            onChange={(e) => setSignInEmail(e.target.value)}
-            value={signInEmail}
-            type="email"
-          />
-        </label>
-        <label>
+            <input
+              onChange={(e) => setSignInEmail(e.target.value)}
+              value={signInEmail}
+              type="email"
+            />
+          </label>
+          <label>
           Password
-          <input
-            onChange={(e) => setSignInPassword(e.target.value)}
-            value={signInPassword}
-            type="password"
-          />
-        </label>
-        <button>SignIn</button>
+            <input
+              onChange={(e) => setSignInPassword(e.target.value)}
+              value={signInPassword}
+              type="password"
+            />
+          </label>
+          <button>SignIn</button>
+        </div>
       </form>
     </div>
   );
