@@ -1,6 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import AuthPage from './AuthPage';
+import MovieSearch from './MovieSearch';
+import WatchList from './WatchList';
 
 export default function App() {
   return (
@@ -12,10 +14,10 @@ export default function App() {
               <Link to="/AuthPage">Login</Link>
             </li>
             <li>
-              <Link to="/about">About</Link>
+              <Link to="/MovieSearch">Movies</Link>
             </li>
             <li>
-              <Link to="/users">Users</Link>
+              <Link to="/WatchList">Watch List</Link>
             </li>
           </ul>
         </nav>
@@ -25,6 +27,12 @@ export default function App() {
         <Switch>
           <Route exact path="/AuthPage">
             <AuthPage />
+          </Route>
+          <Route exact path="/MovieSearch">
+            <MovieSearch />
+          </Route>
+          <Route exact path="/WatchList">
+            <WatchList />
           </Route>
         </Switch>
       </div>
