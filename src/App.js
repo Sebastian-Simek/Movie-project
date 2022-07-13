@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Link, Redirect } from 'react-router-dom';
 import AuthPage from './AuthPage';
 import MovieSearch from './MovieSearch';
 import WatchList from './WatchList';
@@ -25,9 +25,6 @@ export default function App() {
           <div className="links">
             <ul>
               <li>
-                <Link to="/AuthPage">Login</Link>
-              </li>
-              <li>
                 <Link to="/MovieSearch">Movies</Link>
               </li>
               <li>
@@ -42,11 +39,20 @@ export default function App() {
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>
-          <Route exact path="/AuthPage">
-            <AuthPage />
+          <Route exact path="/">
+            {
+              !user
+                ? <AuthPage />
+                : <Redirect to="/MovieSearch" />
+            }
           </Route>
           <Route exact path="/MovieSearch">
-            <MovieSearch />
+            {
+              user 
+                ? <MovieSearch />
+                : <Redirect to="/" />
+            }
+            
           </Route>
           <Route exact path="/WatchList">
             <WatchList />
