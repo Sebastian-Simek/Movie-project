@@ -7,6 +7,7 @@ import { useDataContext } from './ContextProvider';
 import { logOut } from './services/fetch-utils';
 
 import './App.css';
+import MovieDetails from './MovieDetails';
 
 export default function App() {
   const { user, setUser } = useDataContext();
@@ -45,6 +46,9 @@ export default function App() {
           </Route>
           <Route exact path="/WatchList">
             <WatchList />
+          </Route>
+          <Route exact path="/MovieDetails/:id">
+            <MovieDetails />
           </Route>
         </Switch>
       </div>
