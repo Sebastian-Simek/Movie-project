@@ -9,8 +9,15 @@ import { logOut } from './services/fetch-utils';
 import './App.css';
 
 export default function App() {
-  // const { user, setUser } = useDataContext();
-  // console.log(user);
+  const { user, setUser } = useDataContext();
+  console.log(user);
+
+  async function handleLogOut() {
+    await logOut();
+
+    setUser('');
+  }
+
   return (
     <Router>
       <div className="App">
@@ -26,6 +33,8 @@ export default function App() {
               <li>
                 <Link to="/WatchList">Watch List</Link>
               </li>
+              {user &&
+              <button onClick={handleLogOut}>Logout</button>}
             </ul>
           </div>
         </nav>
