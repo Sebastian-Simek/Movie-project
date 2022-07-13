@@ -3,9 +3,14 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import AuthPage from './AuthPage';
 import MovieSearch from './MovieSearch';
 import WatchList from './WatchList';
+import { useDataContext } from './ContextProvider';
+import { logOut } from './services/fetch-utils';
+
 import './App.css';
 
 export default function App() {
+  // const { user, setUser } = useDataContext();
+  // console.log(user);
   return (
     <Router>
       <div className="App">

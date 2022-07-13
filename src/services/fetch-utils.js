@@ -10,3 +10,11 @@ export async function signIn(email, password) {
 
   return user;
 }
+
+export async function logOut() {
+  await client.auth.signOut();
+}
+
+export function getUser() {
+  return client.auth.user();
+}

@@ -1,11 +1,14 @@
 import { useState } from 'react';
 import { signUp, signIn } from './services/fetch-utils';
+import { useDataContext } from './ContextProvider';
 
-export default function AuthPage({ setUser }) {
+export default function AuthPage() {
   const [signUpEmail, setSignUpEmail] = useState('');
   const [signUpPassword, setSignUpPassword] = useState('');
   const [signInEmail, setSignInEmail] = useState('');
   const [signInPassword, setSignInPassword] = useState('');
+
+  const { setUser } = useDataContext();
 
   async function handleSignIn(e) {
     e.preventDefault();
