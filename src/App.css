@@ -1,38 +1,71 @@
 .App {
-  text-align: center;
+  display: flex;
+  flex-direction: row;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.auth-page {
+  display: flex;
+  flex-direction: row;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.sign-up {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  font-size: 1.25rem;
+  font-family: monospace;
+  border: dotted 4px;
+  padding: 20px;
+  margin: 10px;
+}
+.sign-in {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.25rem;
+  font-family: monospace;
+  border: dotted 4px;
+  padding: 20px;
+  margin: 10px;
+}
+.links {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  padding: 20px;
+  font-size: 1.25rem;
+  font-family: monospace;
+}
+a:link {
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+  padding: 10px;
+}
+a:visited {
+  text-decoration: none;
+  color: black;
+}
+label {
+  display: flex;
+  flex-direction: column;
+}
+input {
+  border-radius: 5px;
+  font-size: 1rem;
+  margin: 10px;
+}
+button {
+  margin: 10px;
+  background-color: rgb(15, 15, 41);
   color: white;
+  font-size: 1.25rem;
+  border-radius: 5px;
+  font-family:monospace;
 }
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+ol, ul {
+  list-style: none;
 }
