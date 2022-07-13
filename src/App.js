@@ -10,7 +10,6 @@ import './App.css';
 
 export default function App() {
   const { user, setUser } = useDataContext();
-  console.log(user);
 
   async function handleLogOut() {
     await logOut();
@@ -30,8 +29,7 @@ export default function App() {
               <li>
                 <Link to="/WatchList">Watch List</Link>
               </li>
-              {user &&
-              <button onClick={handleLogOut}>Logout</button>}
+              {user && <button onClick={handleLogOut}>Logout</button>}
             </ul>
           </div>
         </nav>
@@ -40,19 +38,10 @@ export default function App() {
             renders the first one that matches the current URL. */}
         <Switch>
           <Route exact path="/">
-            {
-              !user
-                ? <AuthPage />
-                : <Redirect to="/MovieSearch" />
-            }
+            {!user ? <AuthPage /> : <Redirect to="/MovieSearch" />}
           </Route>
           <Route exact path="/MovieSearch">
-            {
-              user 
-                ? <MovieSearch />
-                : <Redirect to="/" />
-            }
-            
+            {user ? <MovieSearch /> : <Redirect to="/" />}
           </Route>
           <Route exact path="/WatchList">
             <WatchList />
