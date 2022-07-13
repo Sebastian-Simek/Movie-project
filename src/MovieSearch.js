@@ -13,11 +13,11 @@ export default function MovieSearch() {
     const movies = await searchMovies(searchQuery);
     setResults(movies);
   }
-
+  console.log(searchQuery);
 
 
   return (
-    <>   <div>MovieSearch</div>;
+    <>   <div>MovieSearch</div>
       <form onSubmit={searchHandle}>
         <label>
           <input value={searchQuery} onChange={e => setSearchQuery(e.target.value)} />
