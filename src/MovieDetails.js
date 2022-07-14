@@ -17,9 +17,10 @@ export default function MovieDetails() {
   }
 
   return (
-    <div>
+    <div className="movie-details">
       <h2>{singleMovie.title}</h2>
       <img src={`https://image.tmdb.org/t/p/original/${singleMovie.poster_path}`} />
+      <p>{singleMovie.overview}</p>
     </div>
   );
 }

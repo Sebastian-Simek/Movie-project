@@ -84,3 +84,12 @@ ul {
 .movie img {
   width: 75%;
 }
+
+.movie-details {
+  width: 800px;
+  height: 1000px;
+}
+
+.movie-details img {
+  width: 50%;
+}
