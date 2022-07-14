@@ -2,8 +2,7 @@ import { getFavorites } from './services/fetch-utils';
 import { useDataContext } from './ContextProvider';
 import { useEffect, useState } from 'react';
 // import MovieSearch from './MovieSearch';
-import MovieDetails from './MovieDetails';
-
+import MovieList from './MovieList';
 export default function Favorites() {
   const { user } = useDataContext();
   const [favorites, setFavorites] = useState([]);
@@ -15,12 +14,13 @@ export default function Favorites() {
 
   useEffect(() => {
     handleFetchFavorites();
-  }, [user.id]); //eslint-disable-line
+  }, []); //eslint-disable-line
   console.log(favorites);
 
-  return (<div>
-    <h1>I ♥️ Movies</h1>
-    
-  </div>
+  return (
+    <div>
+      <h1>I ♥️ Movies</h1>
+      <MovieList favorites={favorites} />
+    </div>
   );
 }
