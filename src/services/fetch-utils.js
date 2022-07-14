@@ -37,9 +37,16 @@ export async function createFavorites(favorites) {
 }
 
 export async function getFavorites(id) {
-  const { body } = await client.from('movie_project').select('*').match({ user_id: id });
-
-  return body;
+  if (id) {
+    const { body } = await client.from('movie_project').select('*').match({ user_id: id });
+    return body;
+  } else {
+    const { body } = await client
+      .from('movie_project')
+      .select('*')
+      .match({ user_id: getUser().id });
+    return body;
+  }
 }
 
 export async function removeFavorite(id) {
