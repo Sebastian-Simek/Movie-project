@@ -28,7 +28,7 @@ export default function App() {
                 <Link to="/MovieSearch">Movies</Link>
               </li>
               <li>
-                <Link to="/Favorites">Watch List</Link>
+                <Link to="/Favorites">Favorites</Link>
               </li>
               {user && <button onClick={handleLogOut}>Logout</button>}
             </ul>

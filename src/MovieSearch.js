@@ -8,7 +8,7 @@ export default function MovieSearch() {
   // const [watchList, setWatchList] = useState('');
   const [results, setResults] = useState([]);
   const { user } = useDataContext();
-  const [favorite, setFavorite] = useState('');
+  // const [favorite, setFavorite] = useState('');
 
 
   async function searchHandle(e) {
@@ -24,7 +24,7 @@ export default function MovieSearch() {
 
   async function handleAddFavorite(favorite) {
     await createFavorites(favorite);
-    setFavorite();
+    // setFavorite();
   }
 
 

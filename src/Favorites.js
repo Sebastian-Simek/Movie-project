@@ -1,6 +1,8 @@
 import { getFavorites } from './services/fetch-utils';
 import { useDataContext } from './ContextProvider';
 import { useEffect, useState } from 'react';
+// import MovieSearch from './MovieSearch';
+import MovieDetails from './MovieDetails';
 
 export default function Favorites() {
   const { user } = useDataContext();
@@ -16,5 +18,9 @@ export default function Favorites() {
   }, [user.id]); //eslint-disable-line
   console.log(favorites);
 
-  return <div>Favorites</div>;
+  return (<div>
+    <h1>I ♥️ Movies</h1>
+    
+  </div>
+  );
 }

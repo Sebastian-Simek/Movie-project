@@ -37,7 +37,7 @@ export async function createFavorites(favorites) {
 }
 
 export async function getFavorites(id) {
-  const data = await client.from('movie_project').select('*').match({ user_id: id });
+  const { body } = await client.from('movie_project').select('*').match({ user_id: id });
 
-  return data;
+  return body;
 }
