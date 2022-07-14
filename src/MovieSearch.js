@@ -1,15 +1,19 @@
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
-import { createFavorites, searchMovies } from './services/fetch-utils';
+import { useState, useEffect } from 'react';
+import { createFavorites, searchMovies, getFavorites } from './services/fetch-utils';
 import { useDataContext } from './ContextProvider';
+
 
 export default function MovieSearch() {
   const [searchQuery, setSearchQuery] = useState('');
   // const [watchList, setWatchList] = useState('');
   const [results, setResults] = useState([]);
   const { user } = useDataContext();
-  // const [favorite, setFavorite] = useState('');
+  const [favorites, setFavorites] = useState('');
 
+  useEffect(() => {
+    if (!favorites) handleFetchFavorites();
+  }, []); //eslint-disable-line
 
   async function searchHandle(e) {
     e.preventDefault();
@@ -27,6 +31,14 @@ export default function MovieSearch() {
     // setFavorite();
   }
 
+  async function handleFetchFavorites() {
+    const favorites = await getFavorites(user.id);
+    setFavorites(favorites);
+  }
+
+  async function handleDelete() {
+    
+  }
 
 
   return (
@@ -38,20 +50,25 @@ export default function MovieSearch() {
         <button>Search Movies</button>
       </form>
       <div className="movie-posters">
-        {results.map((result, i) => (
-          <div key={result.title + i} className="movie">
+        {results.map((result, i) => {
+          const alreadyFavorite = favorites && favorites.find((favorite) => favorite.title === result.title);
+          return <div key={result.title + i} className="movie">
             <Link to={`MovieDetails/${result.id}`}>
               <h3>{result.title}</h3>
               <img src={`https://image.tmdb.org/t/p/original/${result.poster_path}`} />
             </Link>
-            <button onClick={() => handleAddFavorite({
-              api_id: result.id,
-              title: result.original_title,
-              poster: result.poster_path
-            })} >Add to Favs</button>
-          </div>
-        ))}
+            <button onClick={() => alreadyFavorite 
+              ? handleDelete(alreadyFavorite.id)
+              : handleAddFavorite({
+                api_id: result.id,
+                title: result.original_title,
+                poster: result.poster_path
+              })
+            } > { alreadyFavorite ? 'Remove from' : 'Add to' } Favorites</button>
+          </div>;
+        })}
       </div>
+      
     </div>
   );
 }
