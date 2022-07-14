@@ -30,3 +30,8 @@ export async function logOut() {
 export function getUser() {
   return client.auth.user();
 }
+
+export async function createFavorites(favorites) {
+  const data = await client.from('movie_project').insert(favorites);
+  return data;
+}
