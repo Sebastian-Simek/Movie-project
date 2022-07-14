@@ -11,12 +11,17 @@ export async function signIn(email, password) {
   return user;
 }
 
-
-export async function searchMovies(query) {
-  const response = await fetch(`https:/api.themoviedb.org/3/search/movie?api_key=f23e10c06f28a5e8fc2f2fc0bfa65aa6&page=1&query=${query}`);
-  return response;
+export async function searchMovies(searchQuery) {
+  const rawData = await fetch(`/.netlify/functions/movie?title=${searchQuery}`);
+  const data = await rawData.json();
+  return data;
 }
 
+export async function searchSingleMovie(id) {
+  const rawData = await fetch(`/.netlify/functions/singleMovie?id=${id}`);
+  const data = await rawData.json();
+  return data;
+}
 
 export async function logOut() {
   await client.auth.signOut();

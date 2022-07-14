@@ -64,8 +64,23 @@ button {
   color: white;
   font-size: 1.25rem;
   border-radius: 5px;
-  font-family:monospace;
+  font-family: monospace;
 }
-ol, ul {
+ol,
+ul {
   list-style: none;
+}
+
+.movie-posters {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.movie {
+  width: 200px;
+  height: 400px;
+}
+
+.movie img {
+  width: 75%;
 }

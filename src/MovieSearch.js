@@ -1,7 +1,6 @@
-import { useLocation } from 'react-router-dom';
-import { useState } from 'react';
+import { useLocation, Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 import { getWatchList, searchMovies } from './services/fetch-utils';
-
 
 export default function MovieSearch() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -10,23 +9,33 @@ export default function MovieSearch() {
 
   async function searchHandle(e) {
     e.preventDefault();
-    const movies = await searchMovies(searchQuery);
-    setResults(movies);
+    await doLoad();
   }
-  console.log(searchQuery);
 
+  async function doLoad() {
+    const movies = await searchMovies(searchQuery);
+    setResults(movies.results);
+  }
 
   return (
-    <>   <div>MovieSearch</div>
+    <div>
       <form onSubmit={searchHandle}>
         <label>
-          <input value={searchQuery} onChange={e => setSearchQuery(e.target.value)} />
+          <input value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} />
         </label>
         <button>Search Movies</button>
-      </form></>
+      </form>
+      <div className="movie-posters">
+        {results.map((result, i) => (
+          <div key={result.title + i} className="movie">
+            <Link to={`MovieDetails/${result.id}`}>
+              <h3>{result.title}</h3>
+              <img src={`https://image.tmdb.org/t/p/original/${result.poster_path}`} />
+            </Link>
+            <button>Add to Favs</button>
+          </div>
+        ))}
+      </div>
+    </div>
   );
-
 }
-
-
-
