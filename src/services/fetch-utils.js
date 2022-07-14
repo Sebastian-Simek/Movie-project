@@ -17,6 +17,12 @@ export async function searchMovies(searchQuery) {
   return data;
 }
 
+export async function searchSingleMovie(id) {
+  const rawData = await fetch(`/.netlify/functions/singleMovie?id=${id}`);
+  const data = await rawData.json();
+  return data;
+}
+
 export async function logOut() {
   await client.auth.signOut();
 }
