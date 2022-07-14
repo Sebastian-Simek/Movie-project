@@ -10,6 +10,7 @@ export default function MovieSearch() {
   const { user } = useDataContext();
   const [favorite, setFavorite] = useState('');
 
+  console.log(results);
 
   async function searchHandle(e) {
     e.preventDefault();
@@ -29,13 +30,9 @@ export default function MovieSearch() {
   // };
 
 
-  async function handleAddFavorite() {
-    await createFavorites({
-      api_id: results.id,
-      title: results.original_title,
-      id: user.id, 
-      poster: results.poster_path
-    });
+  async function handleAddFavorite(favorite) {
+    await createFavorites(favorite);
+    setFavorite();
   }
 
 
@@ -55,7 +52,12 @@ export default function MovieSearch() {
               <h3>{result.title}</h3>
               <img src={`https://image.tmdb.org/t/p/original/${result.poster_path}`} />
             </Link>
-            <button onClick={handleAddFavorite} >Add to Favs</button>
+            <button onClick={() => handleAddFavorite({
+              api_id: result.id,
+              title: result.original_title,
+              // id: user.id, 
+              poster: result.poster_path
+            })} >Add to Favs</button>
           </div>
         ))}
       </div>
