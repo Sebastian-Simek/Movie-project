@@ -33,6 +33,11 @@ export function getUser() {
 
 export async function createFavorites(favorites) {
   const data = await client.from('movie_project').insert(favorites);
-  console.log(favorites);
+  return data;
+}
+
+export async function getFavorites(id) {
+  const data = await client.from('movie_project').select('*').match({ user_id: id });
+
   return data;
 }

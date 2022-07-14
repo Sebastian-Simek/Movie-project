@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Link, Redirect } from 'react-router-dom';
 import AuthPage from './AuthPage';
 import MovieSearch from './MovieSearch';
-import WatchList from './WatchList';
+import Favorites from './Favorites';
 import { useDataContext } from './ContextProvider';
 import { logOut } from './services/fetch-utils';
 
@@ -28,7 +28,7 @@ export default function App() {
                 <Link to="/MovieSearch">Movies</Link>
               </li>
               <li>
-                <Link to="/WatchList">Watch List</Link>
+                <Link to="/Favorites">Watch List</Link>
               </li>
               {user && <button onClick={handleLogOut}>Logout</button>}
             </ul>
@@ -39,13 +39,19 @@ export default function App() {
             renders the first one that matches the current URL. */}
         <Switch>
           <Route exact path="/">
-            {!user ? <AuthPage /> : <Redirect to="/MovieSearch" />}
+            {
+              !user 
+                ? <AuthPage /> 
+                : <Redirect to="/MovieSearch" />}
           </Route>
           <Route exact path="/MovieSearch">
-            {user ? <MovieSearch /> : <Redirect to="/" />}
+            {
+              user 
+                ? <MovieSearch /> 
+                : <Redirect to="/" />}
           </Route>
-          <Route exact path="/WatchList">
-            <WatchList />
+          <Route exact path="/Favorites">
+            <Favorites />
           </Route>
           <Route exact path="/MovieDetails/:id">
             <MovieDetails />

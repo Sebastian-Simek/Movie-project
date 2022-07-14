@@ -1,6 +1,6 @@
-import { useLocation, Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
-import { createFavorites, getWatchList, searchMovies } from './services/fetch-utils';
+import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { createFavorites, searchMovies } from './services/fetch-utils';
 import { useDataContext } from './ContextProvider';
 
 export default function MovieSearch() {
@@ -10,7 +10,6 @@ export default function MovieSearch() {
   const { user } = useDataContext();
   const [favorite, setFavorite] = useState('');
 
-  console.log(results);
 
   async function searchHandle(e) {
     e.preventDefault();
@@ -21,13 +20,6 @@ export default function MovieSearch() {
     const movies = await searchMovies(searchQuery);
     setResults(movies.results);
   }
-
-  // const favorites = {
-  //   api_id: results.id,
-  //   title: results.original_title,
-  //   id: user.id, 
-  //   poster: results.poster_path
-  // };
 
 
   async function handleAddFavorite(favorite) {
@@ -55,7 +47,6 @@ export default function MovieSearch() {
             <button onClick={() => handleAddFavorite({
               api_id: result.id,
               title: result.original_title,
-              // id: user.id, 
               poster: result.poster_path
             })} >Add to Favs</button>
           </div>
