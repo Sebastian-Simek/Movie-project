@@ -1,7 +1,6 @@
 import { getFavorites } from './services/fetch-utils';
 import { useDataContext } from './ContextProvider';
 import { useEffect, useState } from 'react';
-// import MovieSearch from './MovieSearch';
 import MovieList from './MovieList';
 export default function Favorites() {
   const { user } = useDataContext();

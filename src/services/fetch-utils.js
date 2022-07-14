@@ -41,3 +41,9 @@ export async function getFavorites(id) {
 
   return body;
 }
+
+export async function removeFavorite(id) {
+  const { data } = await client.from('movie_project').delete().match({ id }).single();
+
+  return data;
+}
