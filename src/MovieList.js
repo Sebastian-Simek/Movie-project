@@ -1,12 +1,19 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function MovieList({ favorites }) {
-  console.log('from Movie List', favorites);
   return (
-    <div>
-      <p>hELLO</p>
+    <div className="movie-posters">
       {favorites &&
-        favorites.map((favorite, i) => <div key={favorite.id + i}>{favorite.title}</div>)}
+        favorites.map((favorite, i) => (
+          <div key={favorite.id + i} className="movie">
+            <Link to={`MovieDetails/${favorite.api_id}`}>
+              <h3>{favorite.title}</h3>
+              <img src={`https://image.tmdb.org/t/p/original/${favorite.poster}`} />
+            </Link>
+            <button>Remove Movie</button>
+          </div>
+        ))}
     </div>
   );
 }

@@ -39,19 +39,13 @@ export default function App() {
             renders the first one that matches the current URL. */}
         <Switch>
           <Route exact path="/">
-            {
-              !user 
-                ? <AuthPage /> 
-                : <Redirect to="/MovieSearch" />}
+            {!user ? <AuthPage /> : <Redirect to="/MovieSearch" />}
           </Route>
           <Route exact path="/MovieSearch">
-            {
-              user 
-                ? <MovieSearch /> 
-                : <Redirect to="/" />}
+            {user ? <MovieSearch /> : <Redirect to="/" />}
           </Route>
           <Route exact path="/Favorites">
-            <Favorites />
+            {user ? <Favorites /> : <Redirect to="/" />}
           </Route>
           <Route exact path="/MovieDetails/:id">
             <MovieDetails />
