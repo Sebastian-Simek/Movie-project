@@ -1,11 +1,15 @@
-import { useLocation, Link } from 'react-router-dom';
-import { useState, useEffect } from 'react';
-import { getWatchList, searchMovies } from './services/fetch-utils';
+import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { createFavorites, searchMovies } from './services/fetch-utils';
+import { useDataContext } from './ContextProvider';
 
 export default function MovieSearch() {
   const [searchQuery, setSearchQuery] = useState('');
   // const [watchList, setWatchList] = useState('');
   const [results, setResults] = useState([]);
+  const { user } = useDataContext();
+  // const [favorite, setFavorite] = useState('');
+
 
   async function searchHandle(e) {
     e.preventDefault();
@@ -16,6 +20,14 @@ export default function MovieSearch() {
     const movies = await searchMovies(searchQuery);
     setResults(movies.results);
   }
+
+
+  async function handleAddFavorite(favorite) {
+    await createFavorites(favorite);
+    // setFavorite();
+  }
+
+
 
   return (
     <div>
@@ -32,7 +44,11 @@ export default function MovieSearch() {
               <h3>{result.title}</h3>
               <img src={`https://image.tmdb.org/t/p/original/${result.poster_path}`} />
             </Link>
-            <button>Add to Favs</button>
+            <button onClick={() => handleAddFavorite({
+              api_id: result.id,
+              title: result.original_title,
+              poster: result.poster_path
+            })} >Add to Favs</button>
           </div>
         ))}
       </div>
