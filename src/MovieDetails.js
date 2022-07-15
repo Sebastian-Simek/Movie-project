@@ -5,7 +5,6 @@ import { searchSingleMovie } from './services/fetch-utils';
 export default function MovieDetails() {
   const [singleMovie, setSingleMovie] = useState({});
   const { id } = useParams();
-  console.log(singleMovie);
 
   useEffect(() => {
     doLoad();
