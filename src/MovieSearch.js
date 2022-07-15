@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react';
 import { createFavorites, searchMovies, getFavorites } from './services/fetch-utils';
 import { useDataContext } from './ContextProvider';
 
-
 export default function MovieSearch() {
   const [searchQuery, setSearchQuery] = useState('');
   // const [watchList, setWatchList] = useState('');
@@ -25,7 +24,6 @@ export default function MovieSearch() {
     setResults(movies.results);
   }
 
-
   async function handleAddFavorite(favorite) {
     await createFavorites(favorite);
     // setFavorite();
@@ -36,11 +34,6 @@ export default function MovieSearch() {
     setFavorites(favorites);
   }
 
-  async function handleDelete() {
-    
-  }
-
-
   return (
     <div>
       <form onSubmit={searchHandle}>
@@ -50,25 +43,26 @@ export default function MovieSearch() {
         <button>Search Movies</button>
       </form>
       <div className="movie-posters">
-        {results.map((result, i) => {
-          const alreadyFavorite = favorites && favorites.find((favorite) => favorite.title === result.title);
-          return <div key={result.title + i} className="movie">
+        {results.map((result, i) => (
+          <div key={result.title + i} className="movie">
             <Link to={`MovieDetails/${result.id}`}>
               <h3>{result.title}</h3>
               <img src={`https://image.tmdb.org/t/p/original/${result.poster_path}`} />
             </Link>
-            <button onClick={() => alreadyFavorite 
-              ? handleDelete(alreadyFavorite.id)
-              : handleAddFavorite({
-                api_id: result.id,
-                title: result.original_title,
-                poster: result.poster_path
-              })
-            } > { alreadyFavorite ? 'Remove from' : 'Add to' } Favorites</button>
-          </div>;
-        })}
+            <button
+              onClick={() =>
+                handleAddFavorite({
+                  api_id: result.id,
+                  title: result.original_title,
+                  poster: result.poster_path,
+                })
+              }
+            >
+              Save to favs
+            </button>
+          </div>
+        ))}
       </div>
-      
     </div>
   );
 }
