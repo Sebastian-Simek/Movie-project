@@ -4,15 +4,11 @@ import { createFavorites, searchMovies, getFavorites } from './services/fetch-ut
 import { useDataContext } from './ContextProvider';
 
 export default function MovieSearch() {
+  const { favorites, handleDelete, handleAddFavorite, favorite } = useDataContext();
   const [searchQuery, setSearchQuery] = useState('');
   // const [watchList, setWatchList] = useState('');
   const [results, setResults] = useState([]);
-  const { user } = useDataContext();
-  const [favorites, setFavorites] = useState('');
 
-  useEffect(() => {
-    if (!favorites) handleFetchFavorites();
-  }, []); //eslint-disable-line
 
   async function searchHandle(e) {
     e.preventDefault();
@@ -21,18 +17,18 @@ export default function MovieSearch() {
 
   async function doLoad() {
     const movies = await searchMovies(searchQuery);
-    setResults(movies.results);
+    const moviesWithFavorites = movies.results.map(movie => {
+      const favoriteId = favorites.find(favorite => Number(favorite.api_id) === Number(movie.id));
+      if (favoriteId){
+        return { ...movie, favoriteId };
+      } else {
+        return movie;
+      }
+    });
+    setResults(moviesWithFavorites);
   }
 
-  async function handleAddFavorite(favorite) {
-    await createFavorites(favorite);
-    // setFavorite();
-  }
 
-  async function handleFetchFavorites() {
-    const favorites = await getFavorites(user.id);
-    setFavorites(favorites);
-  }
 
   return (
     <div>
@@ -50,7 +46,7 @@ export default function MovieSearch() {
               <img src={`https://image.tmdb.org/t/p/original/${result.poster_path}`} />
             </Link>
             <button
-              onClick={() =>
+              onClick={() => 
                 handleAddFavorite({
                   api_id: result.id,
                   title: result.original_title,
@@ -58,7 +54,7 @@ export default function MovieSearch() {
                 })
               }
             >
-              Save to favs
+              {result.favoriteId ? 'remove Fav' : 'Save to favs'}
             </button>
           </div>
         ))}
